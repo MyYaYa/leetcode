@@ -42,6 +42,7 @@ void BubbleSort3(vector<int>& arr) {
     }
 }
 
+// optimized bubble sort
 void BubbleSort4(vector<int>& arr) {
     int length = arr.size();
     int i, j;
