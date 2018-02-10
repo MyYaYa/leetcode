@@ -7,62 +7,50 @@ void swap(int &a, int &b) {
     b = temp;
 }
 
-void BubbleSort1(vector<int>& arr) {
-    int length = arr.size();
+void bubbleSort(int arr[], int n) {
+    bool swapped = true;
     int i, j;
-    for (i = length - 1; i > 0; i--) {
-        for (j = 0; j < i; j++) {
-            if (arr[j] > arr[j+1]) {
-                swap(arr[j], arr[j+1]);
+    for (j = n-1; j >= 0; j--) {
+        if (!swapped)   break;
+        swapped = false;
+        for (i = 0; i < j; i++) {
+            if (arr[i] > arr[i+1]) {
+                swap(arr[i], arr[i+1]);
+                swapped = true;
             }
         }
     }
 }
 
-void BubbleSort2(vector<int>& arr) {
-    int length = arr.size();
-    int i, j;
-    for (i = 0; i < length - 1; i++) {
-        for (j = i+1; j < length; j++) {
-            if (arr[i] > arr[j]) {
-                swap(arr[i], arr[j]);
+// cocktail sort
+void cocktailSort(int arr[], int n) {
+    bool swapped = true;
+    int start=0, end=n-1;
+    while (swapped) {
+        swapped = false;
+        // from left to right
+        for (int i = start; i < end; i++) {
+            if (arr[i] > arr[i+1]) {
+                myswap(arr[i], arr[i+1]);
+                swapped = true;
             }
         }
-    }
-}
-
-void BubbleSort3(vector<int>& arr) {
-    int length = arr.size();
-    int i,j;
-    for(i=0; i<length-1; i++) {
-        for(j=length-2; j>=i; j--)   //从右向左冒泡，较小的数向前端冒泡
-            if(arr[j] > arr[j+1]) {
-                swap(arr[j], arr[j+1]);
-            }
-    }
-}
-
-// optimized bubble sort
-void BubbleSort4(vector<int>& arr) {
-    int length = arr.size();
-    int i, j;
-    bool flag = true; //设置一个标记,数组中没有逆序就置flag为false，排序结束;
-    //有逆序则置为true，做进一步操作。
-    for(i = length-1; i > 0 && flag ; i--){
-        flag = false;
-        for(j = 0; j < i;j++){
-            if(arr[j] > arr[j+1]) {
-                swap(arr[j], arr[j+1]);
-                flag = true;//存在逆序，所以置为true
+        end--;
+        
+        // from right to left
+        for (int i = end; i > start; i--) {
+            if (arr[i] < arr[i-1]) {
+                myswap(arr[i], arr[i-1]);
+                swapped = true;
             }
         }
+        start++;
     }
 }
 
 int main() {
-    vector<int> a = {9,8,7,6,5,4,3,2,1};
-    BubbleSort1(a);
-    for (auto i : a) {
-        cout << i << ' ';
-    }
+    int arr[10] = {9,8,7,5,6,3,4,0,1,2};
+    bubbleSort(arr, 10);
+    for (int i = 0; i < 10; i++)
+        cout << arr[i] << " ";
 }
