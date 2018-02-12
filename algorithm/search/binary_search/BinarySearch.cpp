@@ -16,13 +16,13 @@ int binarySearch(int arr[], int value, int left, int right) {
 }
 
 // recursively
-int binarySearch(int arr[], int low, int high, int v) {
-    if (low > high) return -1;
+int binarySearch1(int arr[], int v, int left, int right, int v) {
+    if (left > right) return -1;
     else {
-        int mid = (low + high) / 2;
+        int mid = (left + right) / 2;
         if (arr[mid] == v)  return mid;
-        else if (arr[mid] < v)  return binarySearch(arr, mid+1, high, v);
-        else    return binarySearch(arr, low, mid-1, v);
+        else if (arr[mid] < v)  return binarySearch(arr, v, mid+1, right);
+        else    return binarySearch(arr, v, left, mid-1);
     }
 }
 
