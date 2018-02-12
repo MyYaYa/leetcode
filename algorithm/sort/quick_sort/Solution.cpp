@@ -1,6 +1,10 @@
 #include <iostream>
 using namespace std;
 
+/**
+ * partition method 1
+ * from two boundaries to middle, swap the lesser and the larger.
+ */
 void quickSort(int arr[], int left, int right) {
     int i = left, j = right;
     int tmp;
@@ -22,6 +26,31 @@ void quickSort(int arr[], int left, int right) {
         quickSort(arr, left, j);
     if (i < right)
         quickSort(arr, i, right);
+}
+
+/**
+ * partition method 2:
+ * from left to right, swap lessers to the left.
+ */
+int partition(int arr[], int left, int right) {
+    swap(arr[(left+right)/2], arr[right]);
+    int small = left;
+    for (int i = left; i < right; i++) {
+        if (arr[i] < arr[right]) {
+            if (i != small) {
+                swap(arr[i], arr[small]);
+            }
+            small++;
+        }
+    }
+    swap(arr[small], arr[right]);
+    return small;
+}
+void quickSort1(int arr[], int left, int right) {
+    if (left >= right) return;
+    int mid = partition(arr, left, right);
+    if (mid > left) quickSort(arr, left, mid-1);
+    if (mid < right)    quickSort(arr, mid+1, right);
 }
 
 int main() {

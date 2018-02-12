@@ -10,12 +10,19 @@
 
 *   时间复杂度$O(log n)$但不够实用的解法：
 *   存在一个矩阵公式，利用幂运算的加法性质，二分方法去计算。
-$$
-\begin{matrix}
-    f(n) & f(n-1) //
-    f(n-1) & f(n-2)
-\end{matrix} \tag{1}
-$$
+                $$
+                \begin{matrix}
+                    f(n) & f(n-1) //
+                    f(n-1) & f(n-2)
+                \end{matrix}
+                $$
+                =
+                $$
+                \begin{matrix}
+                    1 & 1 //
+                    1 & 0
+                \end{matrix} 
+                $$ ^{n-1}
 *   这个公式可以利用数学归纳法进行证明。
 
 ##青蛙跳台阶问题##
