@@ -22,7 +22,7 @@ public:
     }
 
     // return pivot index
-    int Partition(vector<int> numbers, int left, int right) {
+    int Partition(vector<int>& numbers, int left, int right) {
         int pivot = numbers[left];
         int i = left, j = right;
         while (i < j) {
