@@ -7,3 +7,16 @@
 *   额外空间消耗：O(1)
 *   平均时间复杂度：O(log n)
 *   最差时间复杂度：O(log n)
+
+
+#特殊的二分查找#
+*   四种情况：
+    -   最后一个小于或等于某个值的index
+    -   最后一个小于某个值的index
+    -   第一个大于或等于某个值的index
+    -   第一个大于某个值的index
+*   更新二分查找的边界，一定要left = mid + 1; right = mid - 1;
+*   循环结束的条件时left > right，而且left = right + 1;
+*   所以满足vector[left] >(=) v, vector[right] <(=) v。等号加在哪里看具体情况。
+*   所以第一种和第二种情况下，return right
+*   第三种和第四种情况下，return left
