@@ -41,18 +41,16 @@ void insertionSort(vector<int>& arr) {
  * (3) Using binary search
  */
 // binary search, find the position to insert.
+// find the first > v position
 int bs(int arr[], int v, int start, int end) {
     while (start < end) {
         int mid = (start + end) / 2;
-        if (arr[mid] == v) {
-            return mid;
-        } else if (arr[mid] < v) {
-            start = mid+1;
-        } else {
-            end = mid-1;
-        }
+        if (arr[mid] > v)
+            right = mid - 1;
+        else 
+            left = mid + 1;
     }
-    return arr[start] < v ? start+1 : start;
+    return left;
 }
 // insertion sort using binary search
 void insertionSort(int arr[], int length) {

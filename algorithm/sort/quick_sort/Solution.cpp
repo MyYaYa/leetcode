@@ -7,25 +7,22 @@ using namespace std;
  */
 void quickSort(int arr[], int left, int right) {
     int i = left, j = right;
-    int tmp;
-    int pivot = arr[(left + right) / 2];
+    int pivot = arr[left];
     /* partition */
-    while (i <= j) {
-        while (arr[i] < pivot)
-            i++;
-        while (arr[j] > pivot)
+    while (i < j) {
+        while (i < j && arr[j] >= pivot)
             j--;
-        if (i <= j) {
-            swap(arr[i], arr[j]);
+        arr[i] = arr[j];
+        while (i < j && arr[i] < pivot)
             i++;
-            j--;
-        }
-    };
+        arr[j] = arr[i];
+    }; // assert i == j
+    arr[i] = pivot;
     /* recursion */
-    if (left < j)
-        quickSort(arr, left, j);
-    if (i < right)
-        quickSort(arr, i, right);
+    if (i > left + 1)
+        quickSort(arr, left, i-1);
+    if (i < right - 1)
+        quickSort(arr, i+1, right);
 }
 
 /**
