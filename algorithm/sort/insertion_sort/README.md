@@ -16,3 +16,6 @@
 *   stable (insertion sort retains relative order of the same elements);
 *   in-place (requires constant amount of additional space);
 *   online (new elements can be added during the sort).
+
+
+*   对链表进行插入排序，思路一致，注意链表的指针操作以及链表存储的特殊性。
