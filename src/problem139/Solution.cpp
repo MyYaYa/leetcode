@@ -1,18 +1,18 @@
 class Solution {
 public:
-    bool wordBreak(string s, vector<string>& wordDict) {
-        int len = s.size();
-        vector<bool> dp(len+1, false);
+    bool wordBreak(string s, unordered_set<string> &dict) {
+        if (dict.find(s) != dict.end())
+            return true;
+        vector<bool> dp(s.size()+1, false);
         dp[0] = true;
-        for (int i = 1; i <= len; i++) {
-            for (int j = 0; j < len; j++) {
-                string substr = s.substr(j, i-j);
-                if (dp[j] && find(wordDict.begin(), wordDict.end(), substr) != wordDict.end()) {
+        for (int i = 1; i <= s.size(); ++i) {
+            for (int j = 0; j < i; ++j) {
+                string s_str = s.substr(j, i - j);
+                if (dict.find(s_str) != dict.end() && dp[j]) {
                     dp[i] = true;
-                    break;
                 }
             }
         }
-        return dp[len];
+        return dp[s.size()];
     }
 };
